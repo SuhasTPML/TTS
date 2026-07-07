@@ -199,13 +199,6 @@
       const skip = (details.seekOffset || 10);
       audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + skip);
     });
-    navigator.mediaSession.setActionHandler('previoustrack', () => {
-      const idx = currentIdx > 0 ? currentIdx - 1 : tracks.length - 1;
-      loadTrack(idx);
-    });
-    navigator.mediaSession.setActionHandler('nexttrack', () => {
-      loadTrack((currentIdx + 1) % tracks.length);
-    });
     navigator.mediaSession.setActionHandler('seekto', (details) => {
       if (details.fastSeek !== undefined && !details.fastSeek) return;
       audio.currentTime = details.seekTime || 0;
